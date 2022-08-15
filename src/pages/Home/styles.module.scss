@@ -1,0 +1,127 @@
+.header{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 45vh;
+
+    .topLogo{
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        img{
+            margin: 20px 20px;
+            width: 79px;
+        }
+
+        .logout{
+            margin: 20px 20px;
+        }
+        
+        background-color: #1D4484;
+    }
+    .curves{
+        width: 100%;
+        border-top: solid 1px #1D4484;
+    }
+
+    .topContent{
+        height: 100%;
+        width: 100%;
+        background-color: #1D4484;
+
+        h1{
+            font-size: 2.5rem;
+            margin-left: 20px;
+            color: #fff;
+            font-size: 2rem;
+            span{
+                font-size: 2rem;
+                font-weight: 200;
+            }
+        }
+    }
+}
+
+.body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 40vh;
+    width: 100%;
+
+    .topBody{
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        h1{
+            margin: 0 20px;
+            color: #1D4484;
+            font-size: 2rem;
+            span{
+                font-weight: 400;
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .contentBody{
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .otpBox{
+            display: flex;
+            flex-direction: column;
+
+            h1{
+                margin: 50px 0 0 0;
+                letter-spacing: 1rem;
+                padding: 1rem 2rem;
+                border-radius: 15px;
+                background-color: #1D4484;
+                color: #fff;
+                font-size: 3rem;
+            }
+    
+            span{
+                font-size: 1.2rem;
+                text-align: right;
+            }
+        }
+    }
+
+   
+}
+
+.footer{
+    text-align: right;
+    margin-right: 20px;
+    height: 15vh;
+    position: relative;
+
+    p{
+        width: 100%;
+        position: absolute;
+        display: block;
+        margin: 30px 10px;
+        bottom: 0;
+        right: 0;
+        color: #1D4484;
+        font-weight: 100;
+        
+        span{
+            font-weight: 500;
+        }
+    }
+}

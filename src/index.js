@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import Login from './pages/Login'
-import { BrowserRouter as Router, Routes, Route, Redirect } from 'react-router-dom';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,6 +12,7 @@ root.render(
   <Router>
     <Routes>
       <Route path='/' element={<Login/>}/>
+      <Route path='home' element={<Home/>}/>
     </Routes>
   </Router>
 );
