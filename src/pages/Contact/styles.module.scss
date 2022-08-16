@@ -15,7 +15,11 @@
     
     background-color: #1D4484;
 }
-
+.curves {
+    width: 100%;
+    margin-top: -1px;
+    fill: #1D4484;
+}
 .topContent{
     height: 100%;
     width: 100%;
@@ -30,6 +34,7 @@
         }
     }
 }
+
 
 .body{
     display: flex;
@@ -63,25 +68,5 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
-        .otpBox{
-            display: flex;
-            flex-direction: column;
-
-            h1{
-                margin: 50px 0 0 0;
-                letter-spacing: 1rem;
-                padding: 1rem 2rem;
-                border-radius: 15px;
-                background-color: #1D4484;
-                color: #fff;
-                font-size: 3rem;
-            }
-    
-            span{
-                font-size: 1.2rem;
-                text-align: right;
-            }
-        }
-    }   
+    }  
 }

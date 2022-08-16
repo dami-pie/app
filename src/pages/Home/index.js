@@ -1,7 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
 import logo from '../../images/logo_e_branco.png';
-import curves from '../../images/curves.svg'
 import styles from './styles.module.scss';
+import CurvedBox from "../../Components/CurvedBox";
+import ContactFooter from '../../Components/ContactFooter';
 import { faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom'
@@ -43,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-        <div className={styles.header}>
+        <CurvedBox>
           <div className={styles.topLogo}>
             <FontAwesomeIcon 
               icon={faSignOutAlt} 
@@ -59,8 +60,7 @@ export default function Home() {
                 <span>ANDRÉ</span>
             </h1>
           </div>
-          <img src={curves} alt='curved svg' className={styles.curves}/>
-        </div>
+        </CurvedBox>
         <div className={styles.body}>
             <div className={styles.topBody}>
                 <h1>
@@ -78,12 +78,7 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        <div className={styles.footer}>
-          <p>
-            Caso tenha algum problema, <br/>
-            <span>entre em contato</span>
-          </p>
-        </div>
+        <ContactFooter/>
     </>
   );
 }

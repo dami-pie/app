@@ -1,0 +1,21 @@
+.footer{
+    text-align: right;
+    margin-right: 20px;
+    height: 15vh;
+    position: relative;
+
+    p{
+        width: 100%;
+        position: absolute;
+        display: block;
+        margin: 30px 10px;
+        bottom: 0;
+        right: 0;
+        color: #1D4484;
+        font-weight: 100;
+        
+        span{
+            font-weight: 500;
+        }
+    }
+}
