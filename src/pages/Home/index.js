@@ -14,13 +14,15 @@ export default function Home() {
     const intervalId = useRef(null);
     let navigate = useNavigate();
 
+    const user = localStorage.getItem('user');
+
     const generateOtp = () =>{
         let str = '';
 
         for(let i =0; i<5; i++){
             str += Math.abs(Math.floor(Math.random() * (0 - 9)));
         }
-
+        console.log(user)
         setOtp(str);
     }
 
@@ -57,7 +59,7 @@ export default function Home() {
           </div>
           <div className={styles.topContent}>
             <h1>BEM VINDO, <br/>
-                <span>ANDRÉ</span>
+                <span>{user}</span>
             </h1>
           </div>
         </CurvedBox>
