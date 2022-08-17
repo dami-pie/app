@@ -12,9 +12,10 @@ export default function Home() {
     const [timer, setTimer] = useState(0);
     const [otp, setOtp] = useState('');
     const intervalId = useRef(null);
+    const [username, setUsername] = useState("");
     let navigate = useNavigate();
 
-    const user = localStorage.getItem('user');
+    
 
     const generateOtp = () =>{
         let str = '';
@@ -22,11 +23,16 @@ export default function Home() {
         for(let i =0; i<5; i++){
             str += Math.abs(Math.floor(Math.random() * (0 - 9)));
         }
-        console.log(user)
         setOtp(str);
     }
 
     useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        setUsername(userData.given_name.toUpperCase());
+    },[])
+
+    useEffect(() => {
+        
         intervalId.current = setInterval(() => {
                 setTimer((prevState) => prevState - 1);
             }, 1000);
@@ -59,7 +65,7 @@ export default function Home() {
           </div>
           <div className={styles.topContent}>
             <h1>BEM VINDO, <br/>
-                <span>{user}</span>
+                <span>{username ? username : ""}</span>
             </h1>
           </div>
         </CurvedBox>

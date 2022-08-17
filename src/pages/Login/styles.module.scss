@@ -24,33 +24,9 @@
 
     button{
         display: inline-flex;
-        padding: 1rem 1.5rem;
-        border-radius: 15px;
+        padding: 0.5rem;
+        border-radius: 35px;
         border: none;
         background-color: #1D4484;
-        
-
-        .buttonText, .buttonIcon{
-            height: 100%;
-            display: inline-flex;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .buttonText{
-        color: #fff;
-        font-weight: bolder;
-        font-size: 1.3rem;
-
-        }
-        
-        .buttonIcon{
-            border-radius: 15px;
-
-            .googleLogo{
-                width: 63px;
-                color: white;
-            }
-        }
     }
 }

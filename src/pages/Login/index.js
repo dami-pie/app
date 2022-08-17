@@ -1,31 +1,47 @@
 import React, { useEffect } from 'react';
-import { gapi } from 'gapi-script';
 import logo from '../../images/logo_branco.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle} from '@fortawesome/free-brands-svg-icons';
+import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom'
 import CurvedBox from "../../Components/CurvedBox";
 import ContactFooter from '../../Components/ContactFooter';
-import LoginButton from '../../Components/LoginButton';
-
-const client_id = "662762925143-vs71ih7qtl2oj3h6ln27c685rakv93bj.apps.googleusercontent.com";
-
+import { faBorderNone } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login() {
 
-  useEffect(()=>{
-    function start(){
-      gapi.client.init({
-        clientId: client_id,
-        scope: ""
-      })
-    }
-
-    gapi.load('client:auth2',start);
-  });
-
   let navigate = useNavigate();
+
+  const handleCallbackResponse = (res) => {
+    console.log("O google responde com um JWT encryptado")
+    console.log("Encoded JWT ", res.credential)
+    console.log("Podemos desencriptar para obter as informações do usuario")
+    var userObject = jwtDecode(res.credential);
+    console.log(userObject);
+    localStorage.setItem("user",JSON.stringify(userObject));
+    navigate('/home');
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:"662762925143-vs71ih7qtl2oj3h6ln27c685rakv93bj.apps.googleusercontent.com",
+      auto_select:false,
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById('googleButton'), {
+        type:"standard",
+        theme: "outline",
+        size:"large",
+        text:"signin_with	",
+        shape:"pill",
+        logo_alignment: "left",
+        locale:"pt_BR",
+        width:300
+      }
+    )
+  },[]);
 
   return (
     <>
@@ -36,9 +52,7 @@ export default function Login() {
         </CurvedBox>
         <div className={styles.body}>
           <button>
-            <FontAwesomeIcon icon={faGoogle} className={styles.googleLogo} size="xl" inverse />
-            <span className={styles.buttonText} onClick={()=>{navigate('/home')}}>Login com o Google</span>
-            <LoginButton/>
+            <div id="googleButton"></div>
           </button>
         </div>
         <ContactFooter/>
