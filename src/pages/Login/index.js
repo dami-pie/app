@@ -5,7 +5,6 @@ import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom'
 import CurvedBox from "../../Components/CurvedBox";
 import ContactFooter from '../../Components/ContactFooter';
-import { faBorderNone } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login() {
 
@@ -20,8 +19,8 @@ export default function Login() {
     localStorage.setItem("user",JSON.stringify(userObject));
     navigate('/home');
   }
-
-  useEffect(() => {
+  
+  useEffect(() => {   
     /* global google */
     google.accounts.id.initialize({
       client_id:"662762925143-vs71ih7qtl2oj3h6ln27c685rakv93bj.apps.googleusercontent.com",
