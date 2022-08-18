@@ -11,7 +11,7 @@ export default function QrScan(){
 
     const handleScan = (result) => {
         if(result){
-            setResult(result);
+            setResult("Scan realizado " + result);
             console.log(result);
         }
     }
@@ -28,6 +28,7 @@ export default function QrScan(){
 			style={previewStyle}
 			onError={handleError}
 			onResult={handleScan}
+			facingMode="rear"
 			/>
 			<div className={styles.result}>{result}</div>		
 		</div>
