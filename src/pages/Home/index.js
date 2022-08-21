@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import {Context} from '../../Context/Context'
 import logo from '../../images/logo_e_branco.png';
 import styles from './styles.module.scss';
 import CurvedBox from "../../Components/CurvedBox";
@@ -11,11 +12,12 @@ import QrScan from '../../Components/QrScan';
 
 export default function Home() {
     const [username, setUsername] = useState("");
+    const { handleLogout } = useContext(Context);
     let navigate = useNavigate();
     
     useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('user'));
-        setUsername(userData.given_name.toUpperCase());
+        const userData = localStorage.getItem('username');
+        setUsername(userData.toUpperCase());
     },[])
 
   return (
@@ -27,7 +29,7 @@ export default function Home() {
               className={styles.logout} 
               size="xl" 
               inverse
-              onClick={()=>{navigate('/')}}
+              onClick={()=>{handleLogout()}}
             />
             <img src={logo} alt='ecomp logo'/>
           </div>
@@ -48,9 +50,7 @@ export default function Home() {
                 </h1>
             </div>
             <div className={styles.contentBody}>
-                <div className={styles.otpBox}>
-                    <QrScan/>
-                </div>
+              <QrScan/>
             </div>
         </div>
         <ContactFooter/>

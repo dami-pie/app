@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { Context } from '../../Context/Context';
 import logo from '../../images/logo_branco.png';
 import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
-import { useNavigate } from 'react-router-dom'
 import CurvedBox from "../../Components/CurvedBox";
 import ContactFooter from '../../Components/ContactFooter';
 
 export default function Login() {
 
-  let navigate = useNavigate();
+  const {handleLogin}  = useContext(Context);
 
   const handleCallbackResponse = (res) => {
-    console.log("O google responde com um JWT encryptado")
-    console.log("Encoded JWT ", res.credential)
-    console.log("Podemos desencriptar para obter as informações do usuario")
     var userObject = jwtDecode(res.credential);
-    console.log(userObject);
-    localStorage.setItem("user",JSON.stringify(userObject));
-    navigate('/home');
+    handleLogin(userObject);
   }
   
   useEffect(() => {   

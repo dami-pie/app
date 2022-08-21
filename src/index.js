@@ -1,21 +1,29 @@
 import React from 'react';
+import { ContextProvider } from './Context/Context';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import Login from './pages/Login';
-import Home from './pages/Home';
+import Home from './pages/Home'
 import Contact from './pages/Contact'
+import PrivateRoutes from './utils/PrivateRoutes'
+import LoginRoute from './utils/LoginRoute';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/contact' element={<Contact/>}/>
-    </Routes>
+    <ContextProvider>
+      <Routes>
+        <Route element={<PrivateRoutes/>}>
+          <Route path='/home' element={<Home/>}/>
+        </Route>
+        <Route element={<LoginRoute/>}>
+          <Route path='/' element={<Login/>}/>
+        </Route>
+        <Route path='/contact' element={<Contact/>}/>
+      </Routes>
+    </ContextProvider>
   </Router>
 );
 
