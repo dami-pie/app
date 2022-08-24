@@ -28,7 +28,7 @@ export default function QrScan(){
 			style={previewStyle}
 			onError={handleError}
 			onScan={handleScan}
-			facingMode="rear"
+			facingMode="environment"
 			/>
 			<div className={styles.result}>{result}</div>		
 		</div>
