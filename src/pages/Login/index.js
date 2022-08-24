@@ -4,7 +4,6 @@ import logo from '../../images/logo_branco.png';
 import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
 import CurvedBox from "../../Components/CurvedBox";
-import ContactFooter from '../../Components/ContactFooter';
 
 export default function Login() {
 
@@ -49,7 +48,6 @@ export default function Login() {
             <div id="googleButton"></div>
           </button>
         </div>
-        <ContactFooter/>
     </>
   );
 }

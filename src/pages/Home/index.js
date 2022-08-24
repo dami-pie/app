@@ -3,7 +3,6 @@ import {Context} from '../../Context/Context'
 import logo from '../../images/logo_e_branco.png';
 import styles from './styles.module.scss';
 import CurvedBox from "../../Components/CurvedBox";
-import ContactFooter from '../../Components/ContactFooter';
 import { faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QrScan from '../../Components/QrScan';
@@ -15,7 +14,7 @@ export default function Home() {
     
     useEffect(() => {
         const userData = localStorage.getItem('username');
-        username ? setUsername(userData.toUpperCase()) : setUsername('');
+        //setUsername(userData.toUpperCase());
     },[])
 
   return (
@@ -51,7 +50,6 @@ export default function Home() {
               <QrScan/>
             </div>
         </div>
-        <ContactFooter/>
     </>
   );
 }

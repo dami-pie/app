@@ -14,7 +14,7 @@ function ContextProvider({ children }){
         const token = localStorage.getItem('token');
         
         if(token){
-            api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+            api.defaults.headers.Authorization = `Bearer ${token}`;
             return true;
         }
 
@@ -25,13 +25,12 @@ function ContextProvider({ children }){
 
     async function handleLogin(oAuthObj){
         if(oAuthObj){
-            const { data } = await api.post('/authenticate', {token:oAuthObj.email});
-            console.log(data);
-            if(oAuthObj){ // if data.token, mockado por equanto
+            const { data } = await api.post('/authenticate', {email:oAuthObj.email});
+            if(data.token){ // if data.token, mockado por equanto
                 setAuthenticated(true);
-                localStorage.setItem('token', 'mockado');
+                localStorage.setItem('token', data.token);
                 localStorage.setItem('username',oAuthObj.given_name);
-                //api.defaults.headers.Authorization = `Bearer ${data.token}`;
+                api.defaults.headers.Authorization = `Bearer ${data.token}`;
                 navigate('/home');
             }
         } 
@@ -40,7 +39,7 @@ function ContextProvider({ children }){
     function handleLogout(){
         setAuthenticated(false);
         localStorage.removeItem('token');
-        localStorage.setItem('username');
+        localStorage.removeItem('username');
         //api.defaults.headers.Authorization = undefined;
         navigate('/');
     }
