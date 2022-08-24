@@ -6,18 +6,16 @@ import CurvedBox from "../../Components/CurvedBox";
 import ContactFooter from '../../Components/ContactFooter';
 import { faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom'
 import QrScan from '../../Components/QrScan';
 
 
 export default function Home() {
     const [username, setUsername] = useState("");
     const { handleLogout } = useContext(Context);
-    let navigate = useNavigate();
     
     useEffect(() => {
         const userData = localStorage.getItem('username');
-        setUsername(userData.toUpperCase());
+        username ? setUsername(userData.toUpperCase()) : setUsername('');
     },[])
 
   return (

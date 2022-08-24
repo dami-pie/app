@@ -15,11 +15,9 @@ root.render(
   <Router>
     <ContextProvider>
       <Routes>
-        <Route element={<PrivateRoutes/>}>
-          <Route path='/home' element={<Home/>}/>
-        </Route>
+        <Route path='/' element={<Home/>}/>
         <Route element={<LoginRoute/>}>
-          <Route path='/' element={<Login/>}/>
+          <Route path='/home' element={<Login/>}/>
         </Route>
         <Route path='/contact' element={<Contact/>}/>
       </Routes>

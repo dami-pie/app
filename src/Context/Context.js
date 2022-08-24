@@ -1,5 +1,6 @@
 import React, { createContext, useState} from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
 
 const Context = createContext();
 
@@ -13,8 +14,7 @@ function ContextProvider({ children }){
         const token = localStorage.getItem('token');
         
         if(token){
-            //api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-            //setar o token na api, mockado por enquanto            
+            api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
             return true;
         }
 
@@ -25,8 +25,8 @@ function ContextProvider({ children }){
 
     async function handleLogin(oAuthObj){
         if(oAuthObj){
-            //const { data } = await api.post('/auth', {token:oAuthToken}); enviar o token para API
-            //vou mockar um token por enquanto
+            const { data } = await api.post('/authenticate', {token:oAuthObj.email});
+            console.log(data);
             if(oAuthObj){ // if data.token, mockado por equanto
                 setAuthenticated(true);
                 localStorage.setItem('token', 'mockado');

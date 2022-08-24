@@ -14,7 +14,7 @@ export default function Login() {
     var userObject = jwtDecode(res.credential);
     handleLogin(userObject);
   }
-  
+
   useEffect(() => {   
     /* global google */
     google.accounts.id.initialize({
