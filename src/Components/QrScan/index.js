@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { QrCodeContext } from "../../Context/QrCodeContext";
 import QrReader  from "react-qr-scanner";
 import styles from "./styles.module.scss";
 
 export default function QrScan(){
-    //const [result, setResult] = useState("");
-	const {handleError, handleScan, facingMode, switchFacingMode, setScanning} = useContext(QrCodeContext);
+	const {handleError, handleScan, setScanning} = useContext(QrCodeContext);
+	const [width, setWidth] = useState(window.innerWidth);
+	
+	useEffect(()=>{
+		setWidth(window.innerWidth);
+	},[]);
+
+	const isDesktop = (width > 768);
 
     const previewStyle = {
 		height: 200,
@@ -25,10 +31,18 @@ export default function QrScan(){
 					onError={handleError}
 					onScan={handleScan}
 					legacyMode={true}
-					facingMode={facingMode}
+					facingMode={`environment`} 
+					constraints={
+						isDesktop
+						  ? undefined
+						  : {
+							  video: {
+								facingMode: { exact: `environment` }
+							  }
+							}
+					  }
 				/>
 				<div className={styles.buttons}>
-					<button onClick={() => {switchFacingMode()}}>Mudar camera</button>
 					<button onClick={() => {setScanning(false)}}>Fechar scanner</button>
 				</div>
 			</div>
