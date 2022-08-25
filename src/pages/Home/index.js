@@ -16,8 +16,8 @@ export default function Home() {
 
     
     useEffect(() => {
-        //const userData = localStorage.getItem('username');
-        //setUsername(userData.toUpperCase());
+      const userData = localStorage.getItem('username');
+      setUsername(userData.toUpperCase());
     },[])
 
   return (
