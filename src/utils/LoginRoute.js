@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom'
-import { Context } from '../Context/Context';
+import { AuthContext } from '../Context/AuthContext';
 
 
 export default function LoginRoute(){
-    const { authenticated } = useContext(Context);
+    const { authenticated } = useContext(AuthContext);
     
     return authenticated ? <Navigate to="/home"/> : <Outlet/>
 

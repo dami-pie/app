@@ -1,20 +1,11 @@
-import React, {useState} from "react";
+import React, { useContext } from "react";
+import { QrCodeContext } from "../../Context/QrCodeContext";
 import QrReader  from "react-qr-scanner";
 import styles from "./styles.module.scss";
-import api from "../../services/api";
 
 export default function QrScan(){
     //const [result, setResult] = useState("");
-
-    const handleError = (err) => {
-        console.log(err);
-    }
-
-    const handleScan =  async (result) => {
-        if(result && result.text){
-            await api.post('/', {time:"2018-09-22T12:42:31Z",key:result.text});
-        }
-    }
+	const {handleError, handleScan, facingMode, switchFacingMode, setScanning} = useContext(QrCodeContext);
 
     const previewStyle = {
 		height: 200,
@@ -23,14 +14,25 @@ export default function QrScan(){
 
 	return (
 		<div className={styles.container}>
-			<QrReader
-			delay={500}
-			style={previewStyle}
-			onError={handleError}
-			onScan={handleScan}
-			legacyMode={true}
-			facingMode={'rear'}
-			/>
+			<div className={styles.descriptionBox}>
+				<h2>ABRIR PORTA</h2>
+				<h3>ESCANEIE O CÓDIGO QR PARA CONTINUAR</h3>
+			</div>
+			<div className={styles.readerBox}>
+				<QrReader
+					delay={500}
+					style={previewStyle}
+					onError={handleError}
+					onScan={handleScan}
+					legacyMode={true}
+					facingMode={facingMode}
+				/>
+				<div className={styles.buttons}>
+					<button onClick={() => {switchFacingMode()}}>Mudar camera</button>
+					<button onClick={() => {setScanning(false)}}>Fechar scanner</button>
+				</div>
+			</div>
+			
 		</div>
 	);
 

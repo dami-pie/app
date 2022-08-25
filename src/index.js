@@ -1,5 +1,6 @@
 import React from 'react';
-import { ContextProvider } from './Context/Context';
+import { AuthContextProvider } from './Context/AuthContext';
+import { QrCodeContextProvider } from './Context/QrCodeContext';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -12,14 +13,16 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <ContextProvider>
+    <AuthContextProvider>
+      <QrCodeContextProvider>
       <Routes>
           <Route path='/' element={<Home/>}/>
         <Route element={<LoginRoute/>}>
           <Route path='/home' element={<Login/>}/>
         </Route>
       </Routes>
-    </ContextProvider>
+      </QrCodeContextProvider>
+    </AuthContextProvider>
   </Router>
 );
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {Context} from '../../Context/Context'
+import {AuthContext} from '../../Context/AuthContext'
+import { QrCodeContext } from '../../Context/QrCodeContext';
 import logo from '../../images/logo_e_branco.png';
 import styles from './styles.module.scss';
 import CurvedBox from "../../Components/CurvedBox";
@@ -10,10 +11,12 @@ import QrScan from '../../Components/QrScan';
 
 export default function Home() {
     const [username, setUsername] = useState("");
-    const { handleLogout } = useContext(Context);
+    const { handleLogout } = useContext(AuthContext);
+    const {scanning, setScanning} = useContext(QrCodeContext);
+
     
     useEffect(() => {
-        const userData = localStorage.getItem('username');
+        //const userData = localStorage.getItem('username');
         //setUsername(userData.toUpperCase());
     },[])
 
@@ -37,18 +40,13 @@ export default function Home() {
           </div>
         </CurvedBox>
         <div className={styles.body}>
-            <div className={styles.topBody}>
-                <h1>
-                    <span>
-                        QR <br/>
-                        CODE <br/>
-                    </span>
-                    SCANNER
-                </h1>
-            </div>
+          {
+            scanning ? <QrScan/> :
             <div className={styles.contentBody}>
-              <QrScan/>
+              <button onClick={()=>{setScanning(true)}}>ABRIR PORTA</button>
+              <button>CADASTRAR CARTÃO</button>
             </div>
+          }
         </div>
     </>
   );

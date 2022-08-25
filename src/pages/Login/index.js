@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Context } from '../../Context/Context';
+import { AuthContext } from '../../Context/AuthContext';
 import logo from '../../images/logo_branco.png';
 import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
@@ -7,7 +7,7 @@ import CurvedBox from "../../Components/CurvedBox";
 
 export default function Login() {
 
-  const {handleLogin}  = useContext(Context);
+  const {handleLogin}  = useContext(AuthContext);
 
   const handleCallbackResponse = (res) => {
     var userObject = jwtDecode(res.credential);

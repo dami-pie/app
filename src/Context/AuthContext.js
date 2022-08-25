@@ -2,10 +2,10 @@ import React, { createContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
-const Context = createContext();
+const AuthContext = createContext();
 
 
-function ContextProvider({ children }){
+function AuthContextProvider({ children }){
 
     let navigate = useNavigate();
 
@@ -40,17 +40,17 @@ function ContextProvider({ children }){
         setAuthenticated(false);
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        //api.defaults.headers.Authorization = undefined;
+        api.defaults.headers.Authorization = undefined;
         navigate('/');
     }
 
 
     return(
-        <Context.Provider value={{authenticated,handleLogin,handleLogout}}>
+        <AuthContext.Provider value={{authenticated,handleLogin,handleLogout}}>
             {children}
-        </Context.Provider>
+        </AuthContext.Provider>
     )
 
 }
 
-export {Context, ContextProvider};
+export {AuthContext, AuthContextProvider};
