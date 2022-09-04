@@ -18,9 +18,11 @@ root.render(
     <AuthContextProvider>
       <QrCodeContextProvider>
       <Routes>
-          <Route path='/' element={<Home/>}/>
+        <Route element={<PrivateRoutes/>}>
+          <Route path='/home' element={<Home/>}/>
+        </Route>
         <Route element={<LoginRoute/>}>
-          <Route path='/home' element={<Login/>}/>
+          <Route path='/' element={<Login/>}/>
         </Route>
       </Routes>
       </QrCodeContextProvider>
