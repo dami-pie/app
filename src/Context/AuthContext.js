@@ -14,7 +14,7 @@ function AuthContextProvider({ children }){
         const token = localStorage.getItem('token');
         
         if(token){
-            api.defaults.headers.Authorization = `Bearer ${token}`;
+            api.defaults.headers.Authorization = `Bearer mock`;
             return true;
         }
 
@@ -25,12 +25,12 @@ function AuthContextProvider({ children }){
 
     async function handleLogin(oAuthObj){
         if(oAuthObj){
-            const { data } = await api.post('/authenticate', {email:oAuthObj.email});
-            if(data.token){ // if data.token, mockado por equanto
+            //const { data } = await api.post('/authenticate', {email:oAuthObj.email});
+            if(oAuthObj){ // if data.token, mockado por equanto
                 setAuthenticated(true);
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('token', 'mock');
                 localStorage.setItem('username',oAuthObj.given_name);
-                api.defaults.headers.Authorization = `Bearer ${data.token}`;
+                api.defaults.headers.Authorization = `Bearer mock`;
                 navigate('/home');
             }
         } 
