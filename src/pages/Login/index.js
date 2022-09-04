@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import logo from '../../images/logo_branco.png';
 import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
-import CurvedBox from "../../Components/CurvedBox";
 
 export default function Login() {
 
@@ -31,22 +30,19 @@ export default function Login() {
         shape:"pill",
         logo_alignment: "left",
         locale:"pt_BR",
-        width:300
+        width:250
       }
     )
   },[]);
 
   return (
     <>
-        <CurvedBox>
-          <div className={styles.topLogo}>
+        <div className={styles.curves}>
             <img src={logo} alt='ecomp logo'/>
-          </div>
-        </CurvedBox>
-        <div className={styles.body}>
-          <button>
             <div id="googleButton"></div>
-          </button>
+        </div>
+        <div className={styles.help}>
+          <button> ? </button>
         </div>
     </>
   );

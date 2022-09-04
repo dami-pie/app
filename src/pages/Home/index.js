@@ -44,7 +44,7 @@ export default function Home() {
             scanning ? <QrScan/> :
             <div className={styles.contentBody}>
               <button onClick={()=>{setScanning(true)}}>ABRIR PORTA</button>
-              <button>CADASTRAR CARTÃO</button>
+              <button disabled={true}>CADASTRAR CARTÃO</button>
             </div>
           }
         </div>

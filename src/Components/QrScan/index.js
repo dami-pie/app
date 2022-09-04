@@ -45,8 +45,7 @@ export default function QrScan(){
 				<div className={styles.buttons}>
 					<button onClick={() => {setScanning(false)}}>Fechar scanner</button>
 				</div>
-			</div>
-			
+			</div>			
 		</div>
 	);
 
