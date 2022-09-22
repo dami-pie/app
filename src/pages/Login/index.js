@@ -1,17 +1,33 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import logo from '../../images/logo_branco.png';
 import jwtDecode from 'jwt-decode';
 import styles from './styles.module.scss';
+import { useReactPWAInstall } from "react-pwa-install";
+import { faArrowDown  } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
+import installLogo from '../../images/install_icon.png'
 
 export default function Login() {
-
+  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
   const {handleLogin}  = useContext(AuthContext);
 
   const handleCallbackResponse = (res) => {
     var userObject = jwtDecode(res.credential);
     handleLogin(userObject);
   }
+
+  const handleClick = () => {
+    pwaInstall({
+      title: "Instalar Ecomp - App",
+      icon:installLogo,
+      description: "Este é o aplicativo dos alunos de Engenharia da Computação da UPE. Atualmente está sendo utilizado para gestão de acessos aos ambientes destinados aos discentes e doscentes.",
+    })
+      .then(() =>toast.success('Aplicativo instalado com sucesso'))
+      .catch(() => toast.error("Usuário cancelou a instalação"));
+  };
+
 
   useEffect(() => {   
     /* global google */
@@ -33,7 +49,7 @@ export default function Login() {
         width:250
       }
     )
-  },[]);
+  });
 
   return (
     <>
@@ -42,7 +58,16 @@ export default function Login() {
             <div id="googleButton"></div>
         </div>
         <div className={styles.help}>
-          <button> ? </button>
+          {supported() && !isInstalled() && (
+          <button type="button" onClick={handleClick}>
+          <FontAwesomeIcon 
+              icon={faArrowDown} 
+              className={styles.logout} 
+              size="xl" 
+              inverse
+            />
+          </button>
+          )}
         </div>
     </>
   );
