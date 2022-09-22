@@ -16,8 +16,12 @@ export default function Login() {
     handleLogin(userObject);
   }
 
-  useEffect(()=>{
-    if(supported() && !isInstalled()){
+    useEffect(()=>{
+    const varSupported = supported();
+    const varIsInstalled = isInstalled();
+    alert(varSupported, " ", varIsInstalled)
+    
+    if(varSupported && !varIsInstalled){
       pwaInstall({
         title: "Instalar Ecomp - App",
         icon:installLogo,
