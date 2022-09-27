@@ -20,10 +20,12 @@ function QrCodeContextProvider({ children }){
             setScanning(false);
             if(/^([0-9]{6})$/.test(result.text)){
                 toast.success('Solicitação de abertura enviada com sucesso');
-                await api.post('/', {time:new Date.toISOString(),key:result.text});
+                await api.post('/', {time:new Date().toISOString(),key:result.text});
             } else{
                 toast.error('O QR Code lido é inválido');
             }
+        } else {
+            toast.error('Erro ao ler QR Code');
         }
     }
 
