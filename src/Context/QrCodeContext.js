@@ -24,8 +24,6 @@ function QrCodeContextProvider({ children }){
             } else{
                 toast.error('O QR Code lido é inválido');
             }
-        } else {
-            toast.error('Erro ao ler QR Code');
         }
     }
 
